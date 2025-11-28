@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% block title %}Quiz Result - Quiz App{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto mt-12 bg-white p-8 rounded-2xl shadow-lg text-center">
+    <h2 class="text-3xl font-bold mb-4 text-blue-600">{{ quiz.title }} - Result</h2>
+    <p class="text-gray-700 text-lg mb-6">
+        You scored <span class="font-semibold text-green-600 text-xl">{{ score }}/{{ total }}</span>
+    </p>
+    <a href="{% url 'quiz_list' %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md transition duration-200">
+        Back to Quizzes
+    </a>
+</div>
+{% endblock %}

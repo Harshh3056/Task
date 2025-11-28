@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block title %}Events - Quiz App{% endblock %}
+
+{% block content %}
+<h2 class="text-3xl font-bold mb-6">Upcoming Events</h2>
+
+<div class="space-y-4">
+    {% for event in events %}
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-2">{{ event.title }}</h3>
+        <p class="text-gray-600 mb-2">{{ event.date }}</p>
+        <p class="text-gray-700">{{ event.description }}</p>
+    </div>
+    {% empty %}
+    <p>No events scheduled.</p>
+    {% endfor %}
+</div>
+{% endblock %}
