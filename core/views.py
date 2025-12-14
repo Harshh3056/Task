@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Quiz, Question, Answer, UserSubmission, UserAnswer, Event
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 # Home page
+@login_required
 def home(request):
 
     quizzes = Quiz.objects.all()
@@ -85,3 +89,16 @@ def result(request, pk):
 def events(request):
     events = Event.objects.all()
     return render(request, 'core/events.html', {'events': events})
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'core/register.html', {'form': form})
+
